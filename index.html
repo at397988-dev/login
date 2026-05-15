@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Glass Login UI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+  background: #0d0d1a;
+  overflow: hidden;
+}
+
+/* BACKGROUND */
+.bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg,#0d0d2b,#2d1b4e,#f0a06a);
+}
+
+/* CARD */
+.card {
+  width: 360px;
+  padding: 35px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  position: relative;
+  z-index: 10;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* INPUT */
+.input {
+  position: relative;
+  margin: 12px 0;
+}
+
+.input input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  outline: none;
+}
+
+.input i {
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  cursor: pointer;
+}
+
+/* LINKS */
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 15px;
+  font-size: 13px;
+}
+
+.links a {
+  color: #a78bfa;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* BUTTONS */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn {
+  background: linear-gradient(135deg,#7c3aed,#3b82f6);
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* RIPPLE */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.15);
+  padding: 10px 20px;
+  border-radius: 30px;
+  opacity: 0;
+  transition: 0.3s;
+  color: white;
+}
+
+.toast.show {
+  opacity: 1;
+}
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 15px;
+  font-size: 13px;
+}
+
+/* Forgot Password Link */
+.links a {
+  color: #a78bfa;
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s ease;
+  font-weight: 400;
+}
+
+/* hover effect */
+.links a:hover {
+  color: #ffffff;
+}
+
+/* underline animation */
+.links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  transition: 0.3s ease;
+}
+
+.links a:hover::after {
+  width: 100%;
+}
+.secondary-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+  text-decoration: none; /* ✔ remove underline */
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* hover effect */
+.secondary-btn:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="card">
+
+  <h2>Login</h2>
+
+  <div class="input">
+    <input id="username" type="text" placeholder="Username">
+  </div>
+
+  <div class="input">
+    <input id="password" type="password" placeholder="Password">
+    <i id="togglePw" class="fa fa-eye"></i>
+  </div>
+
+  <div class="links">
+    <a onclick="forgot()"> <a href="https://at397988-dev.github.io/ANILNEPAL/">Forgot Password?</a></a>
+    
+  </div>
+
+  <button class="login-btn" id="loginBtn" onclick="login(event)">
+    Login
+  </button>
+
+  <button class="secondary-btn" onclick="register()"><a href="https://at397988-dev.github.io/created-/"> Create Account</a>
+   
+  </button>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+// TOAST
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2000);
+}
+
+// PASSWORD TOGGLE
+document.getElementById("togglePw").onclick = () => {
+  const pw = document.getElementById("password");
+  pw.type = pw.type === "password" ? "text" : "password";
+};
+
+// RIPPLE EFFECT
+function ripple(e){
+  const btn = e.currentTarget;
+
+  const circle = document.createElement("span");
+  circle.classList.add("ripple");
+
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+
+  circle.style.width = circle.style.height = size + "px";
+  circle.style.left = (e.clientX - rect.left - size/2) + "px";
+  circle.style.top = (e.clientY - rect.top - size/2) + "px";
+
+  btn.appendChild(circle);
+
+  circle.addEventListener("animationend", () => circle.remove());
+}
+
+// LOGIN
+function login(e){
+  ripple(e);
+
+  const u = document.getElementById("username").value.trim();
+  const p = document.getElementById("password").value.trim();
+
+  if(!u || !p){
+    toast("⚠️ Please fill all fields");
+    return;
+  }
+
+  toast("✅ Welcome " + u);
+}
+
+// FORGOT PASSWORD
+function forgot(){
+  toast("🔐 Password reset link sent (demo)");
+}
+
+// REGISTER
+function register(){
+  toast("📝 Redirect to register page (demo)");
+}
+
+// ENTER KEY LOGIN
+document.addEventListener("keydown", (e)=>{
+  if(e.key === "Enter") login(e);
+});
+
+</script>
+
+</body>
+</html> <a href="#tableBox">time table</a> yasko lagi css add garnu
