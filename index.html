@@ -1,366 +1,529 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Glass Login UI</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* BODY CENTER */
-body {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Outfit', sans-serif;
-  background: #0d0d1a;
-  overflow: hidden;
-  position: relative;
-  padding: 20px;
+/* BODY */
+
+body{
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-family:'Outfit',sans-serif;
+
+  background:#0d0d1a;
+
+  overflow:hidden;
+
+  position:relative;
+
+  padding:20px;
 }
 
 /* BACKGROUND */
-.bg {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
+
+.bg{
+  position:fixed;
+  inset:0;
+
+  background:
+  linear-gradient(
     180deg,
     #0d0d2b,
     #2d1b4e,
     #f0a06a
   );
-  z-index: -1;
+
+  z-index:-1;
 }
 
-/* CARD CENTER */
-.card {
-  width: 100%;
-  max-width: 360px;
+/* CARD */
 
-  padding: 35px;
+.card{
+  width:100%;
+  max-width:360px;
 
-  border-radius: 20px;
+  padding:35px;
 
-  background: rgba(255,255,255,0.1);
+  border-radius:20px;
 
-  backdrop-filter: blur(20px);
+  background:rgba(255,255,255,0.1);
 
-  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter:blur(20px);
 
-  color: white;
+  border:1px solid rgba(255,255,255,0.3);
 
-  position: relative;
+  color:white;
 
-  z-index: 10;
+  position:relative;
 
-  margin: auto;
+  z-index:10;
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,0.3);
 }
 
 /* TITLE */
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+
+h2{
+  text-align:center;
+  margin-bottom:20px;
 }
 
 /* INPUT */
-.input {
-  position: relative;
-  margin: 12px 0;
+
+.input{
+  position:relative;
+  margin:12px 0;
 }
 
-.input input {
-  width: 100%;
+.input input{
+  width:100%;
 
-  padding: 14px;
+  padding:14px;
 
-  border-radius: 10px;
+  border-radius:10px;
 
-  border: 1px solid rgba(255,255,255,0.2);
+  border:1px solid rgba(255,255,255,0.2);
 
-  background: rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.1);
 
-  color: white;
+  color:white;
 
-  outline: none;
+  outline:none;
+
+  font-size:15px;
 }
 
-.input input::placeholder {
-  color: rgba(255,255,255,0.7);
+.input input::placeholder{
+  color:rgba(255,255,255,0.7);
 }
 
-.input i {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: white;
+.input i{
+  position:absolute;
+
+  right:12px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  cursor:pointer;
+
+  color:white;
 }
 
 /* LINKS */
-.links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0 15px;
-  font-size: 13px;
+
+.links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  margin:10px 0 15px;
+
+  font-size:13px;
 }
 
-/* LINK STYLE */
-.links a {
-  color: #a78bfa;
-  text-decoration: none;
-  position: relative;
-  transition: 0.3s ease;
+.links a{
+  color:#a78bfa;
+
+  text-decoration:none;
+
+  position:relative;
+
+  transition:0.3s ease;
 }
 
-/* HOVER */
-.links a:hover {
-  color: #ffffff;
+.links a:hover{
+  color:white;
 }
 
-/* UNDERLINE */
-.links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
+.links a::after{
+  content:"";
 
-  width: 0%;
-  height: 2px;
+  position:absolute;
 
-  background: linear-gradient(
+  left:0;
+  bottom:-2px;
+
+  width:0%;
+  height:2px;
+
+  background:
+  linear-gradient(
     135deg,
     #7c3aed,
     #3b82f6
   );
 
-  transition: 0.3s ease;
+  transition:0.3s ease;
 }
 
-.links a:hover::after {
-  width: 100%;
+.links a:hover::after{
+  width:100%;
 }
 
-/* BUTTONS */
-button {
-  width: 100%;
+/* BUTTON */
 
-  padding: 12px;
+button{
+  width:100%;
 
-  border: none;
+  padding:12px;
 
-  border-radius: 10px;
+  border:none;
 
-  cursor: pointer;
+  border-radius:10px;
 
-  color: white;
+  cursor:pointer;
 
-  font-size: 15px;
+  color:white;
 
-  margin-top: 10px;
+  font-size:15px;
 
-  position: relative;
+  margin-top:10px;
 
-  overflow: hidden;
+  position:relative;
 
-  transition: 0.3s ease;
+  overflow:hidden;
+
+  transition:0.3s ease;
 }
 
 /* LOGIN BUTTON */
-.login-btn {
-  background: linear-gradient(
+
+.login-btn{
+  background:
+  linear-gradient(
     135deg,
     #7c3aed,
     #3b82f6
   );
 }
 
-.login-btn:hover {
-  transform: translateY(-2px);
+.login-btn:hover{
+  transform:translateY(-2px);
 }
 
 /* CREATE ACCOUNT */
-.secondary-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  background: transparent;
+.secondary-btn{
+  display:flex;
 
-  border: 1px solid rgba(255,255,255,0.3);
+  justify-content:center;
+  align-items:center;
+
+  width:100%;
+
+  padding:12px;
+
+  margin-top:10px;
+
+  border-radius:10px;
+
+  text-decoration:none;
+
+  color:white;
+
+  background:transparent;
+
+  border:1px solid rgba(255,255,255,0.3);
+
+  transition:0.3s ease;
 }
 
-.secondary-btn:hover {
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-2px);
-}
+.secondary-btn:hover{
+  background:rgba(255,255,255,0.1);
 
-/* LINK INSIDE BUTTON */
-.secondary-btn a {
-  color: white;
-  text-decoration: none;
-  width: 100%;
-  display: block;
+  transform:translateY(-2px);
 }
 
 /* RIPPLE */
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-  transform: scale(0);
-  animation: ripple 0.6s linear;
+
+.ripple{
+  position:absolute;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,0.4);
+
+  transform:scale(0);
+
+  animation:ripple 0.6s linear;
 }
 
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
+@keyframes ripple{
+
+  to{
+    transform:scale(4);
+    opacity:0;
   }
+
 }
 
-/* TOAST CENTER */
-.toast {
-  position: fixed;
+/* TOAST */
 
-  left: 50%;
-  bottom: 20px;
+.toast{
+  position:fixed;
 
-  transform: translateX(-50%);
+  left:50%;
+  bottom:20px;
 
-  background: rgba(255,255,255,0.15);
+  transform:translateX(-50%);
 
-  backdrop-filter: blur(10px);
+  background:rgba(255,255,255,0.15);
 
-  padding: 10px 20px;
+  backdrop-filter:blur(10px);
 
-  border-radius: 30px;
+  padding:10px 20px;
 
-  opacity: 0;
+  border-radius:30px;
 
-  transition: 0.3s;
+  opacity:0;
 
-  color: white;
+  transition:0.3s;
 
-  z-index: 999;
+  color:white;
+
+  z-index:999;
 }
 
-.toast.show {
-  opacity: 1;
+.toast.show{
+  opacity:1;
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND -->
+
 <div class="bg"></div>
+
+<!-- CARD -->
 
 <div class="card">
 
   <h2>Login</h2>
 
-  <div class="input">
-    <input id="username" type="text" placeholder="Username">
-  </div>
+  <!-- USERNAME -->
 
   <div class="input">
-    <input id="password" type="password" placeholder="Password">
-    <i id="togglePw" class="fa fa-eye"></i>
+
+    <input
+      id="username"
+      type="text"
+      placeholder="Username"
+    >
+
   </div>
+
+  <!-- PASSWORD -->
+
+  <div class="input">
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+    >
+
+    <i
+      id="togglePw"
+      class="fa fa-eye"
+    ></i>
+
+  </div>
+
+  <!-- FORGOT PASSWORD -->
 
   <div class="links">
-    <a onclick="forgot()"> <a href="https://at397988-dev.github.io/ANILNEPAL/">Forgot Password?</a></a>
-    
+
+    <a href="https://at397988-dev.github.io/ANILNEPAL/">
+
+      Forgot Password?
+
+    </a>
+
   </div>
 
-  <button class="login-btn" id="loginBtn" onclick="login(event)">
+  <!-- LOGIN BUTTON -->
+
+  <button
+    class="login-btn"
+    id="loginBtn"
+    onclick="login(event)"
+  >
+
     Login
+
   </button>
 
-  <button class="secondary-btn" onclick="register()"><a href="https://at397988-dev.github.io/created-/"> Create Account</a>
-   
-  </button>
+  <!-- CREATE ACCOUNT -->
+
+  <a
+    class="secondary-btn"
+    href="https://at397988-dev.github.io/created-/"
+  >
+
+    Create Account
+
+  </a>
 
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
 
 <script>
 
-// TOAST
+/* TOAST */
+
 function toast(msg){
-  const t = document.getElementById("toast");
+
+  const t =
+  document.getElementById("toast");
+
   t.textContent = msg;
+
   t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),2000);
+
+  setTimeout(()=>{
+
+    t.classList.remove("show");
+
+  },2000);
+
 }
 
-// PASSWORD TOGGLE
-document.getElementById("togglePw").onclick = () => {
-  const pw = document.getElementById("password");
-  pw.type = pw.type === "password" ? "text" : "password";
+/* PASSWORD TOGGLE */
+
+document
+.getElementById("togglePw")
+.onclick = () => {
+
+  const pw =
+  document.getElementById("password");
+
+  pw.type =
+  pw.type === "password"
+  ? "text"
+  : "password";
+
 };
 
-// RIPPLE EFFECT
+/* RIPPLE EFFECT */
+
 function ripple(e){
+
   const btn = e.currentTarget;
 
-  const circle = document.createElement("span");
+  const circle =
+  document.createElement("span");
+
   circle.classList.add("ripple");
 
-  const rect = btn.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
+  const rect =
+  btn.getBoundingClientRect();
 
-  circle.style.width = circle.style.height = size + "px";
-  circle.style.left = (e.clientX - rect.left - size/2) + "px";
-  circle.style.top = (e.clientY - rect.top - size/2) + "px";
+  const size =
+  Math.max(rect.width, rect.height);
+
+  circle.style.width =
+  circle.style.height =
+  size + "px";
+
+  circle.style.left =
+  (e.clientX - rect.left - size/2)
+  + "px";
+
+  circle.style.top =
+  (e.clientY - rect.top - size/2)
+  + "px";
 
   btn.appendChild(circle);
 
-  circle.addEventListener("animationend", () => circle.remove());
+  circle.addEventListener(
+    "animationend",
+    () => circle.remove()
+  );
+
 }
 
-// LOGIN
+/* LOGIN */
+
 function login(e){
+
   ripple(e);
 
-  const u = document.getElementById("username").value.trim();
-  const p = document.getElementById("password").value.trim();
+  const u =
+  document
+  .getElementById("username")
+  .value
+  .trim();
+
+  const p =
+  document
+  .getElementById("password")
+  .value
+  .trim();
+
+  /* EMPTY CHECK */
 
   if(!u || !p){
-    toast("⚠️ Please fill all fields");
+
+    toast(
+      "⚠️ Please fill all fields"
+    );
+
     return;
   }
 
   toast("✅ Welcome " + u);
+
 }
 
-// FORGOT PASSWORD
-function forgot(){
-  toast("🔐 Password reset link sent (demo)");
-}
+/* ENTER KEY LOGIN */
 
-// REGISTER
-function register(){
-  toast("📝 Redirect to register page (demo)");
-}
+document.addEventListener(
+  "keydown",
+  (e)=>{
 
-// ENTER KEY LOGIN
-document.addEventListener("keydown", (e)=>{
-  if(e.key === "Enter") login(e);
-});
+    if(e.key === "Enter"){
+
+      document
+      .getElementById("loginBtn")
+      .click();
+
+    }
+
+  }
+);
 
 </script>
 
 </body>
-</html> <a href="#tableBox">time table</a> yasko lagi css add garnu
+</html>
